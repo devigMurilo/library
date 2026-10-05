@@ -22,9 +22,11 @@ from django.conf import settings
 
 from rest_framework import routers
 from books.api.viewsets import BooksViewSet
+from books.api.viewsets import AuthorsViewSet
 
 router = routers.DefaultRouter()
 router.register(r'books', BooksViewSet, basename='books')
+router.register(r'authors', AuthorsViewSet, basename='authors')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

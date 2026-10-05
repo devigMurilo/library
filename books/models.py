@@ -15,7 +15,14 @@ def upload_image_book(instance, filename):
 class Books(models.Model):
     id_book = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     title = models.CharField(max_length=100)
-    author = models.CharField(max_length=100)
+    author = models.ForeignKey('Authors', on_delete=models.CASCADE)
     publication_date = models.DateField(validators=[validar_data_publicacao])
     publisher = models.CharField(max_length=100)
     image = models.ImageField(upload_to=upload_image_book, null=True, blank=True)
+
+class Authors(models.Model):
+    id_author = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    biography = models.TextField()
+    birth_date = models.DateField()
+    death_date = models.DateField(null=True, blank=True)
